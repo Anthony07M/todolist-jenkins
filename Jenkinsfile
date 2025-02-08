@@ -15,7 +15,7 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'jenkins-dockerhub', usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_PASS')]) {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_PASS')]) {
                         sh """
                             docker login -u '${DOCKERHUB_USER}' -p '${DOCKERHUB_PASS}'
                             docker tag todo-list-app ${DOCKERHUB_USER}/todo-list-app:latest
